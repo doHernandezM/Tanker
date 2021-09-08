@@ -6,6 +6,7 @@
 //
 
 import Vapor
+import SwiftyPi
 
 struct RouteController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
@@ -23,7 +24,7 @@ struct RouteController: RouteCollection {
     func setTankerStatusHandler(_ req: Request) -> String {
         let mode = req.parameters.get("mode")
         if mode != nil {
-            let state = TankerMode(rawValue: mode!) ?? Tanker.main?.tankerState
+            let state = SwiftyPiMode(rawValue: mode!) ?? Tanker.main?.tankerState
             Tanker.main?.tankerState = state ?? .off
         }
         
@@ -40,7 +41,7 @@ struct RouteController: RouteCollection {
         let mode = req.parameters.get("mode")
        
         if mode != nil {
-            let state = TankerMode(rawValue: mode!) ?? Tanker.main?.misterState
+            let state = SwiftyPiMode(rawValue: mode!) ?? Tanker.main?.misterState
             Tanker.main?.misterState = state ?? .off
         }
         

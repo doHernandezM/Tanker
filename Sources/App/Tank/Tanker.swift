@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftyPi
 //MARK:Tank
 
 var handler: CompletionHandler?
@@ -31,16 +31,16 @@ public class Tanker {
     var poller: Thread? = nil
 
     //MARK:Accessories
-    let statusLED: TankerAccessory
+    let statusLED: SwiftyPiDevice
     
-    let misterButton: TankerAccessory
+    let misterButton: SwiftyPiDevice
     
-    let misterRelay: TankerAccessory
-    let filterRelay: TankerAccessory
+    let misterRelay: SwiftyPiDevice
+    let filterRelay: SwiftyPiDevice
     
-    let lightButton: TankerAccessory
-    let blueLightRelay: TankerAccessory
-    let whiteLightRelay: TankerAccessory
+    let lightButton: SwiftyPiDevice
+    let blueLightRelay: SwiftyPiDevice
+    let whiteLightRelay: SwiftyPiDevice
     
     public var state = TankerState()
     
@@ -52,30 +52,30 @@ public class Tanker {
     //MARK:INIT
     public init() {
         
-        statusLED = TankerAccessory.init(thePin:"P4", theType: .statusLED)
+        statusLED = SwiftyPiDevice.init(thePin:"P4", theType: .statusLED)
         
-        misterButton = TankerAccessory.init(thePin:"P17", theType: .button)//
-        lightButton = TankerAccessory.init(thePin:"P27", theType: .button)
+        misterButton = SwiftyPiDevice.init(thePin:"P17", theType: .button)//
+        lightButton = SwiftyPiDevice.init(thePin:"P27", theType: .button)
         
-        misterRelay = TankerAccessory.init(thePin:"P5", theType: .relay)
-        filterRelay = TankerAccessory.init(thePin:"P6", theType: .relay)
-        blueLightRelay = TankerAccessory.init(thePin:"P13", theType: .relay)
-        whiteLightRelay = TankerAccessory.init(thePin:"P19", theType: .relay)
+        misterRelay = SwiftyPiDevice.init(thePin:"P5", theType: .relay)
+        filterRelay = SwiftyPiDevice.init(thePin:"P6", theType: .relay)
+        blueLightRelay = SwiftyPiDevice.init(thePin:"P13", theType: .relay)
+        whiteLightRelay = SwiftyPiDevice.init(thePin:"P19", theType: .relay)
         
     }
      
-    public var tankerState : TankerMode {
+    public var tankerState : SwiftyPiMode {
         get {
             return tankerRunning ? .high : .off
         }
         set(newStatus){
-            self.tankerRunning = (newStatus == TankerMode.off) ? false : true
+            self.tankerRunning = (newStatus == SwiftyPiMode.off) ? false : true
             self.tankerRunning ? poller?.start() : poller?.cancel()
             print("isRunning:\(self.tankerRunning)")
         }
     }
     
-    public var misterState : TankerMode {
+    public var misterState : SwiftyPiMode {
         get {
             return misterRelay.mode
         }

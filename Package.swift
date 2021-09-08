@@ -10,8 +10,7 @@ let package = Package(
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
-        .package(url: "https://github.com/uraimo/SwiftyGPIO.git", .exact("1.1.10")),
-        .package(url: "https://github.com/doHernandezM/SwiftyPi.git", .upToNextMinor(from: "0.0.0"))
+        .package(url: "https://github.com/doHernandezM/SwiftyPi.git", from: "0.1.1"),
     ],
     targets: [
         .target(
@@ -19,8 +18,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Leaf", package: "leaf"),
                 .product(name: "Vapor", package: "vapor"),
-                .product(name: "SwiftyGPIO", package: "SwiftyGPIO"),
-                .product(name: "SwiftyPi", package: "SwiftyPi")
+                .product(name: "SwiftyPi", package: "SwiftyPi"),
             ],
             swiftSettings: [
                 // Enable better optimizations when buildSwiftyPiing in Release configuration. Despite the use of

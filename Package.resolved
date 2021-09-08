@@ -155,6 +155,15 @@
         }
       },
       {
+        "package": "SwiftyPi",
+        "repositoryURL": "https://github.com/doHernandezM/SwiftyPi.git",
+        "state": {
+          "branch": null,
+          "revision": "9692dfa60891fdcd184c0ef1284f10df9a968d0f",
+          "version": "0.1.6"
+        }
+      },
+      {
         "package": "vapor",
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {

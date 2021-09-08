@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import SwiftyPi
+
 
 //MARK:TankerAccessoryController
 public class TankerController {
-    var firstButtonPressed: TankerAccessory?
-    var secondButtonPressed: TankerAccessory?
+    var firstButtonPressed: SwiftyPiDevice?
+    var secondButtonPressed: SwiftyPiDevice?
     var lastState: TankerState? = nil
     
     public init() {
@@ -22,9 +24,9 @@ public class TankerController {
     }
     
     //MARK:panelUI
-    let debouncer = TankerTimer(timeInterval: 0.25, loops: nil)
+    let debouncer = SwiftyPiTimer(timeInterval: 0.25, loops: nil)
     
-    func lightSwitchPressed(theSwitch:TankerAccessory) {
+    func lightSwitchPressed(theSwitch:SwiftyPiDevice) {
         //            print(state)
         debouncer.handler = {
             //            print(theSwitch.type.rawValue)

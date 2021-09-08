@@ -12,9 +12,6 @@ import Foundation
 var handler: CompletionHandler?
 
 
-public enum TankerMode: String {
-    case off, low, medium, high//high is equal to on
-}
 
 public struct TankerState {
     var statusLED = true

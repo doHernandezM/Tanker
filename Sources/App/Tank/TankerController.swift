@@ -29,23 +29,26 @@ public class TankerController {
     func lightSwitchPressed(theSwitch:SwiftyPiDevice) {
         //            print(state)
         debouncer.handler = {
-            //            print(theSwitch.type.rawValue)
+            print("theSwitch: ",theSwitch.mode)
             
             if (theSwitch.int == 1) {
                 theSwitch.timer?.interval()
+                print("on", Tanker.main)
+                Tanker.main!.statusLED.int = 1
                 
-                Tanker.main?.statusLED.int = 1
-                
-                Tanker.main?.blueLightRelay.int = 1
-                Tanker.main?.whiteLightRelay.int = 1
+                Tanker.main!.blueLightRelay.int = 1
+                Tanker.main!.whiteLightRelay.int = 1
             } else {
-                Tanker.main?.statusLED.int = 0
+                print("off", Tanker.main)
+                Tanker.main!.statusLED.int = 0
                 
-                Tanker.main?.blueLightRelay.int = 0
-                Tanker.main?.whiteLightRelay.int = 0
+                Tanker.main!.blueLightRelay.int = 0
+                Tanker.main!.whiteLightRelay.int = 0
                 
                 theSwitch.timer?.stop(force: true)
             }
+            //            print(Tanker.main!.state)
+            
         }
         debouncer.interval()
     }
@@ -55,9 +58,9 @@ public class TankerController {
     public func startPoller() {
         if let tank = Tanker.main {
             tank.poller = Thread(){ [self] in
-            createPoller()()
-        }
-        
+                createPoller()()
+            }
+            
             tank.poller?.qualityOfService = .background
             tank.poller?.start()
         }
@@ -78,9 +81,8 @@ public class TankerController {
                             tank.firstCycle = false
                         } else {
                             if (tank.state.misterButtonDown != tank.misterButton.bool) {
-                                print("state.misterButtonDown != misterButton.bool")
                                 print("mister")
-                                self.lightSwitchPressed(theSwitch: tank.misterButton)
+                                self.lightSwitchPressed(theSwitch: tank.lightButton)
                             }
                             if (tank.state.lightButtonDown != tank.lightButton.bool) {
                                 print("light")

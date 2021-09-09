@@ -10,7 +10,8 @@ let package = Package(
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
-        .package(url: "https://github.com/doHernandezM/SwiftyPi.git", from: "0.1.1"),
+//        .package(url: "https://github.com/doHernandezM/SwiftyPi.git", .upToNextMajor(from: "0.1.8")),
+        .package(url: "https://github.com/doHernandezM/SwiftyPi.git", ._exactItem("0.1.13")),
     ],
     targets: [
         .target(

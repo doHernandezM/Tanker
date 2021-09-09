@@ -11,8 +11,6 @@ import SwiftyPi
 
 var handler: CompletionHandler?
 
-
-
 public struct TankerState {
     var statusLED = true
     var misterOn = false
@@ -24,7 +22,7 @@ public struct TankerState {
 }
 
 public class Tanker {
-    //To keeps things easy we are making this static and publi singleton
+    //To keeps things easy we are making this static and public singleton
     static public var main: Tanker? = nil
     
     //Poller tank devices for status
@@ -52,15 +50,15 @@ public class Tanker {
     //MARK:INIT
     public init() {
         
-        statusLED = SwiftyPiDevice.init(thePin:"P4", theType: .statusLED)
+        statusLED = SwiftyPiDevice.init(gpioPinName:"P4", theType: .statusLED)
         
-        misterButton = SwiftyPiDevice.init(thePin:"P17", theType: .button)//
-        lightButton = SwiftyPiDevice.init(thePin:"P27", theType: .button)
+        misterButton = SwiftyPiDevice.init(gpioPinName:"P17", theType: .button)//
+        lightButton = SwiftyPiDevice.init(gpioPinName:"P27", theType: .button)
         
-        misterRelay = SwiftyPiDevice.init(thePin:"P5", theType: .relay)
-        filterRelay = SwiftyPiDevice.init(thePin:"P6", theType: .relay)
-        blueLightRelay = SwiftyPiDevice.init(thePin:"P13", theType: .relay)
-        whiteLightRelay = SwiftyPiDevice.init(thePin:"P19", theType: .relay)
+        misterRelay = SwiftyPiDevice.init(gpioPinName:"P5", theType: .relay)
+        filterRelay = SwiftyPiDevice.init(gpioPinName:"P6", theType: .relay)
+        blueLightRelay = SwiftyPiDevice.init(gpioPinName:"P13", theType: .relay)
+        whiteLightRelay = SwiftyPiDevice.init(gpioPinName:"P19", theType: .relay)
         
     }
      
